@@ -1,0 +1,535 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="databasequanaoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Image">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Src" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ProductID" Type="Int32" />
+    <NavigationProperty Name="tbl_Product" Relationship="Self.FK_Images_tbl_Product" FromRole="Images" ToRole="tbl_Product" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_Account" Relationship="Self.FK_tbl_Account_Role" FromRole="Role" ToRole="tbl_Account" />
+    <NavigationProperty Name="tbl_Customer" Relationship="Self.FK_tbl_Customer_Role" FromRole="Role" ToRole="tbl_Customer" />
+  </EntityType>
+  <EntityType Name="Size">
+    <Key>
+      <PropertyRef Name="SizeID" />
+    </Key>
+    <Property Name="SizeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbl_Product" Relationship="Self.FK_tbl_Product_Size" FromRole="Size" ToRole="tbl_Product" />
+  </EntityType>
+  <EntityType Name="Slide">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="show" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Account">
+    <Key>
+      <PropertyRef Name="AccountID" />
+    </Key>
+    <Property Name="AccountID" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Power" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_tbl_Account_Role" FromRole="tbl_Account" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="tbl_Customer">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Usermame" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="Int32" />
+    <Property Name="IsLock" Type="Boolean" Nullable="false" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_tbl_Customer_Role" FromRole="tbl_Customer" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="tbl_Import">
+    <Key>
+      <PropertyRef Name="Import_ID" />
+    </Key>
+    <Property Name="Import_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Money" Type="Double" />
+    <Property Name="Supplier_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_Supplier" Relationship="Self.FK_tbl_Import_tbl_Supplier" FromRole="tbl_Import" ToRole="tbl_Supplier" />
+  </EntityType>
+  <EntityType Name="tbl_ImportDetail">
+    <Key>
+      <PropertyRef Name="Import_ID" />
+      <PropertyRef Name="Product_ID" />
+    </Key>
+    <Property Name="Import_ID" Type="Int32" Nullable="false" />
+    <Property Name="Product_ID" Type="Int32" Nullable="false" />
+    <Property Name="Price_Import" Type="Double" />
+    <Property Name="Amount" Type="Int32" />
+    <Property Name="Money" Type="Double" />
+    <NavigationProperty Name="tbl_Product" Relationship="Self.FK_tbl_ImportDetail_tbl_Product" FromRole="tbl_ImportDetail" ToRole="tbl_Product" />
+  </EntityType>
+  <EntityType Name="tbl_Order">
+    <Key>
+      <PropertyRef Name="Order_ID" />
+    </Key>
+    <Property Name="Order_ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Pay_ID" Type="Int32" Nullable="false" />
+    <Property Name="Transport_ID" Type="Int32" Nullable="false" />
+    <Property Name="Name_Received" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address_Received" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone_Received" Type="Int32" />
+    <Property Name="Name_Pay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address_Pay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone_Pay" Type="Int32" />
+    <Property Name="Mesage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="VAT_Gift" Type="Double" />
+    <Property Name="SumWeight" Type="Double" />
+    <Property Name="VAT_Transport" Type="Double" />
+    <Property Name="SumMoney" Type="Double" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_Payment" Relationship="Self.FK_tbl_Order_tbl_Payment" FromRole="tbl_Order" ToRole="tbl_Payment" />
+    <NavigationProperty Name="tbl_Transport" Relationship="Self.FK_tbl_Order_tbl_Transport" FromRole="tbl_Order" ToRole="tbl_Transport" />
+    <NavigationProperty Name="tbl_OrderDetial" Relationship="Self.FK_tbl_OrderDetial_tbl_Order" FromRole="tbl_Order" ToRole="tbl_OrderDetial" />
+  </EntityType>
+  <EntityType Name="tbl_OrderDetial">
+    <Key>
+      <PropertyRef Name="Order_ID" />
+      <PropertyRef Name="Product_ID" />
+    </Key>
+    <Property Name="Order_ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Product_ID" Type="Int32" Nullable="false" />
+    <Property Name="Price_Export" Type="Double" />
+    <Property Name="Amount" Type="Int32" />
+    <Property Name="Money" Type="Double" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_Order" Relationship="Self.FK_tbl_OrderDetial_tbl_Order" FromRole="tbl_OrderDetial" ToRole="tbl_Order" />
+    <NavigationProperty Name="tbl_Product" Relationship="Self.FK_tbl_OrderDetial_tbl_Product" FromRole="tbl_OrderDetial" ToRole="tbl_Product" />
+  </EntityType>
+  <EntityType Name="tbl_Payment">
+    <Key>
+      <PropertyRef Name="Pay_ID" />
+    </Key>
+    <Property Name="Pay_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Pay_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbl_Order" Relationship="Self.FK_tbl_Order_tbl_Payment" FromRole="tbl_Payment" ToRole="tbl_Order" />
+    <Property Name="PhiTT" Type="Double" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Producer">
+    <Key>
+      <PropertyRef Name="Producer_ID" />
+    </Key>
+    <Property Name="Producer_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Producer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbl_Product" Relationship="Self.FK_tbl_Product_tbl_Producer1" FromRole="tbl_Producer" ToRole="tbl_Product" />
+  </EntityType>
+  <EntityType Name="tbl_Product">
+    <Key>
+      <PropertyRef Name="Product_ID" />
+    </Key>
+    <Property Name="Product_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Product_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Type_ID" Type="Int32" Nullable="false" />
+    <Property Name="Style_ID" Type="Int32" Nullable="false" />
+    <Property Name="Producer_ID" Type="Int32" Nullable="false" />
+    <Property Name="Supplier_ID" Type="Int32" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Material" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Size" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Price_Import" Type="Double" />
+    <Property Name="Price_Export" Type="Double" Nullable="false" />
+    <Property Name="Amount" Type="Int32" />
+    <Property Name="Weight" Type="Double" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="SizeID" Type="Int32" />
+    <Property Name="Order" Type="Int32" Nullable="false" />
+    <Property Name="Quantium" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Images" Relationship="Self.FK_Images_tbl_Product" FromRole="tbl_Product" ToRole="Images" />
+    <NavigationProperty Name="Size1" Relationship="Self.FK_tbl_Product_Size" FromRole="tbl_Product" ToRole="Size" />
+    <NavigationProperty Name="tbl_ImportDetail" Relationship="Self.FK_tbl_ImportDetail_tbl_Product" FromRole="tbl_Product" ToRole="tbl_ImportDetail" />
+    <NavigationProperty Name="tbl_OrderDetial" Relationship="Self.FK_tbl_OrderDetial_tbl_Product" FromRole="tbl_Product" ToRole="tbl_OrderDetial" />
+    <NavigationProperty Name="tbl_Producer" Relationship="Self.FK_tbl_Product_tbl_Producer1" FromRole="tbl_Product" ToRole="tbl_Producer" />
+    <NavigationProperty Name="tbl_Style" Relationship="Self.FK_tbl_Product_tbl_Style" FromRole="tbl_Product" ToRole="tbl_Style" />
+    <NavigationProperty Name="tbl_Supplier" Relationship="Self.FK_tbl_Product_tbl_Supplier1" FromRole="tbl_Product" ToRole="tbl_Supplier" />
+    <NavigationProperty Name="tbl_Type" Relationship="Self.FK_tbl_Product_tbl_Type" FromRole="tbl_Product" ToRole="tbl_Type" />
+  </EntityType>
+  <EntityType Name="tbl_Style">
+    <Key>
+      <PropertyRef Name="Style_ID" />
+    </Key>
+    <Property Name="Style_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Style_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_Product" Relationship="Self.FK_tbl_Product_tbl_Style" FromRole="tbl_Style" ToRole="tbl_Product" />
+  </EntityType>
+  <EntityType Name="tbl_Supplier">
+    <Key>
+      <PropertyRef Name="Supplier_ID" />
+    </Key>
+    <Property Name="Supplier_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Supplier_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tbl_Import" Relationship="Self.FK_tbl_Import_tbl_Supplier" FromRole="tbl_Supplier" ToRole="tbl_Import" />
+    <NavigationProperty Name="tbl_Product" Relationship="Self.FK_tbl_Product_tbl_Supplier1" FromRole="tbl_Supplier" ToRole="tbl_Product" />
+  </EntityType>
+  <EntityType Name="tbl_Transport">
+    <Key>
+      <PropertyRef Name="Transport_ID" />
+    </Key>
+    <Property Name="Transport_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Transport_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbl_Order" Relationship="Self.FK_tbl_Order_tbl_Transport" FromRole="tbl_Transport" ToRole="tbl_Order" />
+    <Property Name="PhiVC" Type="Double" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Type">
+    <Key>
+      <PropertyRef Name="Type_ID" />
+    </Key>
+    <Property Name="Type_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbl_Product" Relationship="Self.FK_tbl_Product_tbl_Type" FromRole="tbl_Type" ToRole="tbl_Product" />
+    <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_Images_tbl_Product">
+    <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Images" Type="Self.Image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Product">
+        <PropertyRef Name="Product_ID" />
+      </Principal>
+      <Dependent Role="Images">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Account_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_Account" Type="Self.tbl_Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="tbl_Account">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Customer_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_Customer" Type="Self.tbl_Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="tbl_Customer">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Product_Size">
+    <End Role="Size" Type="Self.Size" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Size">
+        <PropertyRef Name="SizeID" />
+      </Principal>
+      <Dependent Role="tbl_Product">
+        <PropertyRef Name="SizeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Import_tbl_Supplier">
+    <End Role="tbl_Supplier" Type="Self.tbl_Supplier" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_Import" Type="Self.tbl_Import" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Supplier">
+        <PropertyRef Name="Supplier_ID" />
+      </Principal>
+      <Dependent Role="tbl_Import">
+        <PropertyRef Name="Supplier_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_ImportDetail_tbl_Product">
+    <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="1" />
+    <End Role="tbl_ImportDetail" Type="Self.tbl_ImportDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Product">
+        <PropertyRef Name="Product_ID" />
+      </Principal>
+      <Dependent Role="tbl_ImportDetail">
+        <PropertyRef Name="Product_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Order_tbl_Payment">
+    <End Role="tbl_Payment" Type="Self.tbl_Payment" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_Order" Type="Self.tbl_Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Payment">
+        <PropertyRef Name="Pay_ID" />
+      </Principal>
+      <Dependent Role="tbl_Order">
+        <PropertyRef Name="Pay_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Order_tbl_Transport">
+    <End Role="tbl_Transport" Type="Self.tbl_Transport" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_Order" Type="Self.tbl_Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Transport">
+        <PropertyRef Name="Transport_ID" />
+      </Principal>
+      <Dependent Role="tbl_Order">
+        <PropertyRef Name="Transport_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_OrderDetial_tbl_Order">
+    <End Role="tbl_Order" Type="Self.tbl_Order" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_OrderDetial" Type="Self.tbl_OrderDetial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Order">
+        <PropertyRef Name="Order_ID" />
+      </Principal>
+      <Dependent Role="tbl_OrderDetial">
+        <PropertyRef Name="Order_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_OrderDetial_tbl_Product">
+    <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_OrderDetial" Type="Self.tbl_OrderDetial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Product">
+        <PropertyRef Name="Product_ID" />
+      </Principal>
+      <Dependent Role="tbl_OrderDetial">
+        <PropertyRef Name="Product_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Product_tbl_Producer1">
+    <End Role="tbl_Producer" Type="Self.tbl_Producer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Producer">
+        <PropertyRef Name="Producer_ID" />
+      </Principal>
+      <Dependent Role="tbl_Product">
+        <PropertyRef Name="Producer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Product_tbl_Style">
+    <End Role="tbl_Style" Type="Self.tbl_Style" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Style">
+        <PropertyRef Name="Style_ID" />
+      </Principal>
+      <Dependent Role="tbl_Product">
+        <PropertyRef Name="Style_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Product_tbl_Supplier1">
+    <End Role="tbl_Supplier" Type="Self.tbl_Supplier" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Supplier">
+        <PropertyRef Name="Supplier_ID" />
+      </Principal>
+      <Dependent Role="tbl_Product">
+        <PropertyRef Name="Supplier_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Product_tbl_Type">
+    <End Role="tbl_Type" Type="Self.tbl_Type" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Type">
+        <PropertyRef Name="Type_ID" />
+      </Principal>
+      <Dependent Role="tbl_Product">
+        <PropertyRef Name="Type_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="databasequanaoEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Images" EntityType="Self.Image" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="Sizes" EntityType="Self.Size" />
+    <EntitySet Name="Slides" EntityType="Self.Slide" />
+    <EntitySet Name="tbl_Account" EntityType="Self.tbl_Account" />
+    <EntitySet Name="tbl_Customer" EntityType="Self.tbl_Customer" />
+    <EntitySet Name="tbl_Import" EntityType="Self.tbl_Import" />
+    <EntitySet Name="tbl_ImportDetail" EntityType="Self.tbl_ImportDetail" />
+    <EntitySet Name="tbl_Order" EntityType="Self.tbl_Order" />
+    <EntitySet Name="tbl_OrderDetial" EntityType="Self.tbl_OrderDetial" />
+    <EntitySet Name="tbl_Payment" EntityType="Self.tbl_Payment" />
+    <EntitySet Name="tbl_Producer" EntityType="Self.tbl_Producer" />
+    <EntitySet Name="tbl_Product" EntityType="Self.tbl_Product" />
+    <EntitySet Name="tbl_Style" EntityType="Self.tbl_Style" />
+    <EntitySet Name="tbl_Supplier" EntityType="Self.tbl_Supplier" />
+    <EntitySet Name="tbl_Transport" EntityType="Self.tbl_Transport" />
+    <EntitySet Name="tbl_Type" EntityType="Self.tbl_Type" />
+    <AssociationSet Name="FK_Images_tbl_Product" Association="Self.FK_Images_tbl_Product">
+      <End Role="tbl_Product" EntitySet="tbl_Product" />
+      <End Role="Images" EntitySet="Images" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Account_Role" Association="Self.FK_tbl_Account_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="tbl_Account" EntitySet="tbl_Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Customer_Role" Association="Self.FK_tbl_Customer_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="tbl_Customer" EntitySet="tbl_Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Product_Size" Association="Self.FK_tbl_Product_Size">
+      <End Role="Size" EntitySet="Sizes" />
+      <End Role="tbl_Product" EntitySet="tbl_Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Import_tbl_Supplier" Association="Self.FK_tbl_Import_tbl_Supplier">
+      <End Role="tbl_Supplier" EntitySet="tbl_Supplier" />
+      <End Role="tbl_Import" EntitySet="tbl_Import" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_ImportDetail_tbl_Product" Association="Self.FK_tbl_ImportDetail_tbl_Product">
+      <End Role="tbl_Product" EntitySet="tbl_Product" />
+      <End Role="tbl_ImportDetail" EntitySet="tbl_ImportDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Order_tbl_Payment" Association="Self.FK_tbl_Order_tbl_Payment">
+      <End Role="tbl_Payment" EntitySet="tbl_Payment" />
+      <End Role="tbl_Order" EntitySet="tbl_Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Order_tbl_Transport" Association="Self.FK_tbl_Order_tbl_Transport">
+      <End Role="tbl_Transport" EntitySet="tbl_Transport" />
+      <End Role="tbl_Order" EntitySet="tbl_Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_OrderDetial_tbl_Order" Association="Self.FK_tbl_OrderDetial_tbl_Order">
+      <End Role="tbl_Order" EntitySet="tbl_Order" />
+      <End Role="tbl_OrderDetial" EntitySet="tbl_OrderDetial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_OrderDetial_tbl_Product" Association="Self.FK_tbl_OrderDetial_tbl_Product">
+      <End Role="tbl_Product" EntitySet="tbl_Product" />
+      <End Role="tbl_OrderDetial" EntitySet="tbl_OrderDetial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Product_tbl_Producer1" Association="Self.FK_tbl_Product_tbl_Producer1">
+      <End Role="tbl_Producer" EntitySet="tbl_Producer" />
+      <End Role="tbl_Product" EntitySet="tbl_Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Product_tbl_Style" Association="Self.FK_tbl_Product_tbl_Style">
+      <End Role="tbl_Style" EntitySet="tbl_Style" />
+      <End Role="tbl_Product" EntitySet="tbl_Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Product_tbl_Supplier1" Association="Self.FK_tbl_Product_tbl_Supplier1">
+      <End Role="tbl_Supplier" EntitySet="tbl_Supplier" />
+      <End Role="tbl_Product" EntitySet="tbl_Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Product_tbl_Type" Association="Self.FK_tbl_Product_tbl_Type">
+      <End Role="tbl_Type" EntitySet="tbl_Type" />
+      <End Role="tbl_Product" EntitySet="tbl_Product" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(databasequanaoModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(databasequanaoModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="Counters" EntityType="databasequanaoModel.Counter" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="Counter">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IPAddress" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+</Schema>

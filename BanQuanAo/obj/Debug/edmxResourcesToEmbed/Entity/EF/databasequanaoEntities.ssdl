@@ -1,0 +1,374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="databasequanaoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Size">
+    <Key>
+      <PropertyRef Name="SizeID" />
+    </Key>
+    <Property Name="SizeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tbl_Customer">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Usermame" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Phone" Type="int" />
+    <Property Name="IsLock" Type="bit" Nullable="false" />
+    <Property Name="RoleID" Type="int" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_Import">
+    <Key>
+      <PropertyRef Name="Import_ID" />
+    </Key>
+    <Property Name="Import_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Money" Type="float" />
+    <Property Name="Supplier_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_ImportDetail">
+    <Key>
+      <PropertyRef Name="Import_ID" />
+      <PropertyRef Name="Product_ID" />
+    </Key>
+    <Property Name="Import_ID" Type="int" Nullable="false" />
+    <Property Name="Product_ID" Type="int" Nullable="false" />
+    <Property Name="Price_Import" Type="float" />
+    <Property Name="Amount" Type="int" />
+    <Property Name="Money" Type="float" />
+  </EntityType>
+  <EntityType Name="tbl_Order">
+    <Key>
+      <PropertyRef Name="Order_ID" />
+    </Key>
+    <Property Name="Order_ID" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Pay_ID" Type="int" Nullable="false" />
+    <Property Name="Transport_ID" Type="int" Nullable="false" />
+    <Property Name="Name_Received" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address_Received" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone_Received" Type="int" />
+    <Property Name="Name_Pay" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address_Pay" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone_Pay" Type="int" />
+    <Property Name="Mesage" Type="nvarchar(max)" />
+    <Property Name="VAT_Gift" Type="float" />
+    <Property Name="SumWeight" Type="float" />
+    <Property Name="VAT_Transport" Type="float" />
+    <Property Name="SumMoney" Type="float" />
+    <Property Name="State" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tbl_OrderDetial">
+    <Key>
+      <PropertyRef Name="Order_ID" />
+      <PropertyRef Name="Product_ID" />
+    </Key>
+    <Property Name="Order_ID" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Product_ID" Type="int" Nullable="false" />
+    <Property Name="Price_Export" Type="float" />
+    <Property Name="Amount" Type="int" />
+    <Property Name="Money" Type="float" />
+    <Property Name="State" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tbl_Payment">
+    <Key>
+      <PropertyRef Name="Pay_ID" />
+    </Key>
+    <Property Name="Pay_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Pay_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Producer">
+    <Key>
+      <PropertyRef Name="Producer_ID" />
+    </Key>
+    <Property Name="Producer_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Producer_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Product">
+    <Key>
+      <PropertyRef Name="Product_ID" />
+    </Key>
+    <Property Name="Product_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Product_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Type_ID" Type="int" Nullable="false" />
+    <Property Name="Style_ID" Type="int" Nullable="false" />
+    <Property Name="Producer_ID" Type="int" Nullable="false" />
+    <Property Name="Supplier_ID" Type="int" Nullable="false" />
+    <Property Name="Image" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Color" Type="nvarchar" MaxLength="50" />
+    <Property Name="Material" Type="nvarchar" MaxLength="50" />
+    <Property Name="Size" Type="nchar" MaxLength="10" />
+    <Property Name="Price_Import" Type="float" />
+    <Property Name="Price_Export" Type="float" Nullable="false" />
+    <Property Name="Amount" Type="int" />
+    <Property Name="Weight" Type="float" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="SizeID" Type="int" />
+    <Property Name="Order" Type="int" Nullable="false" />
+    <Property Name="Quantium" Type="int" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="tbl_Style">
+    <Key>
+      <PropertyRef Name="Style_ID" />
+    </Key>
+    <Property Name="Style_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Style_Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tbl_Supplier">
+    <Key>
+      <PropertyRef Name="Supplier_ID" />
+    </Key>
+    <Property Name="Supplier_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Supplier_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone" Type="int" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tbl_Transport">
+    <Key>
+      <PropertyRef Name="Transport_ID" />
+    </Key>
+    <Property Name="Transport_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Transport_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Type">
+    <Key>
+      <PropertyRef Name="Type_ID" />
+    </Key>
+    <Property Name="Type_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tbl_Customer_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="tbl_Customer" Type="Self.tbl_Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="tbl_Customer">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Import_tbl_Supplier">
+    <End Role="tbl_Supplier" Type="Self.tbl_Supplier" Multiplicity="1" />
+    <End Role="tbl_Import" Type="Self.tbl_Import" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Supplier">
+        <PropertyRef Name="Supplier_ID" />
+      </Principal>
+      <Dependent Role="tbl_Import">
+        <PropertyRef Name="Supplier_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_ImportDetail_tbl_Product">
+    <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="1" />
+    <End Role="tbl_ImportDetail" Type="Self.tbl_ImportDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Product">
+        <PropertyRef Name="Product_ID" />
+      </Principal>
+      <Dependent Role="tbl_ImportDetail">
+        <PropertyRef Name="Product_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Order_tbl_Payment">
+    <End Role="tbl_Payment" Type="Self.tbl_Payment" Multiplicity="1" />
+    <End Role="tbl_Order" Type="Self.tbl_Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Payment">
+        <PropertyRef Name="Pay_ID" />
+      </Principal>
+      <Dependent Role="tbl_Order">
+        <PropertyRef Name="Pay_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Order_tbl_Transport">
+    <End Role="tbl_Transport" Type="Self.tbl_Transport" Multiplicity="1" />
+    <End Role="tbl_Order" Type="Self.tbl_Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Transport">
+        <PropertyRef Name="Transport_ID" />
+      </Principal>
+      <Dependent Role="tbl_Order">
+        <PropertyRef Name="Transport_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_OrderDetial_tbl_Order">
+    <End Role="tbl_Order" Type="Self.tbl_Order" Multiplicity="1" />
+    <End Role="tbl_OrderDetial" Type="Self.tbl_OrderDetial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Order">
+        <PropertyRef Name="Order_ID" />
+      </Principal>
+      <Dependent Role="tbl_OrderDetial">
+        <PropertyRef Name="Order_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_OrderDetial_tbl_Product">
+    <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="1" />
+    <End Role="tbl_OrderDetial" Type="Self.tbl_OrderDetial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Product">
+        <PropertyRef Name="Product_ID" />
+      </Principal>
+      <Dependent Role="tbl_OrderDetial">
+        <PropertyRef Name="Product_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Product_Size">
+    <End Role="Size" Type="Self.Size" Multiplicity="0..1" />
+    <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Size">
+        <PropertyRef Name="SizeID" />
+      </Principal>
+      <Dependent Role="tbl_Product">
+        <PropertyRef Name="SizeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Product_tbl_Producer">
+    <End Role="tbl_Producer" Type="Self.tbl_Producer" Multiplicity="1" />
+    <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Producer">
+        <PropertyRef Name="Producer_ID" />
+      </Principal>
+      <Dependent Role="tbl_Product">
+        <PropertyRef Name="Producer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Product_tbl_Style">
+    <End Role="tbl_Style" Type="Self.tbl_Style" Multiplicity="1" />
+    <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Style">
+        <PropertyRef Name="Style_ID" />
+      </Principal>
+      <Dependent Role="tbl_Product">
+        <PropertyRef Name="Style_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Product_tbl_Supplier">
+    <End Role="tbl_Supplier" Type="Self.tbl_Supplier" Multiplicity="1" />
+    <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Supplier">
+        <PropertyRef Name="Supplier_ID" />
+      </Principal>
+      <Dependent Role="tbl_Product">
+        <PropertyRef Name="Supplier_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Product_tbl_Type">
+    <End Role="tbl_Type" Type="Self.tbl_Type" Multiplicity="1" />
+    <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Type">
+        <PropertyRef Name="Type_ID" />
+      </Principal>
+      <Dependent Role="tbl_Product">
+        <PropertyRef Name="Type_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="databasequanaoModelStoreContainer">
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Customer" EntityType="Self.tbl_Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Import" EntityType="Self.tbl_Import" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ImportDetail" EntityType="Self.tbl_ImportDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Order" EntityType="Self.tbl_Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_OrderDetial" EntityType="Self.tbl_OrderDetial" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Payment" EntityType="Self.tbl_Payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Producer" EntityType="Self.tbl_Producer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Product" EntityType="Self.tbl_Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Style" EntityType="Self.tbl_Style" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Supplier" EntityType="Self.tbl_Supplier" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Transport" EntityType="Self.tbl_Transport" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Type" EntityType="Self.tbl_Type" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tbl_Customer_Role" Association="Self.FK_tbl_Customer_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="tbl_Customer" EntitySet="tbl_Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Import_tbl_Supplier" Association="Self.FK_tbl_Import_tbl_Supplier">
+      <End Role="tbl_Supplier" EntitySet="tbl_Supplier" />
+      <End Role="tbl_Import" EntitySet="tbl_Import" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_ImportDetail_tbl_Product" Association="Self.FK_tbl_ImportDetail_tbl_Product">
+      <End Role="tbl_Product" EntitySet="tbl_Product" />
+      <End Role="tbl_ImportDetail" EntitySet="tbl_ImportDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Order_tbl_Payment" Association="Self.FK_tbl_Order_tbl_Payment">
+      <End Role="tbl_Payment" EntitySet="tbl_Payment" />
+      <End Role="tbl_Order" EntitySet="tbl_Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Order_tbl_Transport" Association="Self.FK_tbl_Order_tbl_Transport">
+      <End Role="tbl_Transport" EntitySet="tbl_Transport" />
+      <End Role="tbl_Order" EntitySet="tbl_Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_OrderDetial_tbl_Order" Association="Self.FK_tbl_OrderDetial_tbl_Order">
+      <End Role="tbl_Order" EntitySet="tbl_Order" />
+      <End Role="tbl_OrderDetial" EntitySet="tbl_OrderDetial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_OrderDetial_tbl_Product" Association="Self.FK_tbl_OrderDetial_tbl_Product">
+      <End Role="tbl_Product" EntitySet="tbl_Product" />
+      <End Role="tbl_OrderDetial" EntitySet="tbl_OrderDetial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Product_Size" Association="Self.FK_tbl_Product_Size">
+      <End Role="Size" EntitySet="Size" />
+      <End Role="tbl_Product" EntitySet="tbl_Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Product_tbl_Producer" Association="Self.FK_tbl_Product_tbl_Producer">
+      <End Role="tbl_Producer" EntitySet="tbl_Producer" />
+      <End Role="tbl_Product" EntitySet="tbl_Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Product_tbl_Style" Association="Self.FK_tbl_Product_tbl_Style">
+      <End Role="tbl_Style" EntitySet="tbl_Style" />
+      <End Role="tbl_Product" EntitySet="tbl_Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Product_tbl_Supplier" Association="Self.FK_tbl_Product_tbl_Supplier">
+      <End Role="tbl_Supplier" EntitySet="tbl_Supplier" />
+      <End Role="tbl_Product" EntitySet="tbl_Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Product_tbl_Type" Association="Self.FK_tbl_Product_tbl_Type">
+      <End Role="tbl_Type" EntitySet="tbl_Type" />
+      <End Role="tbl_Product" EntitySet="tbl_Product" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

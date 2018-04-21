@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="databasequanaoModelStoreContainer" CdmEntityContainer="databasequanaoEntities2">
+    <EntitySetMapping Name="Images">
+      <EntityTypeMapping TypeName="databasequanaoModel.Image">
+        <MappingFragment StoreEntitySet="Images">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Src" ColumnName="Src" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="databasequanaoModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sizes">
+      <EntityTypeMapping TypeName="databasequanaoModel.Size">
+        <MappingFragment StoreEntitySet="Size">
+          <ScalarProperty Name="SizeID" ColumnName="SizeID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Slides">
+      <EntityTypeMapping TypeName="databasequanaoModel.Slide">
+        <MappingFragment StoreEntitySet="Slide">
+          <ScalarProperty Name="show" ColumnName="show" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Account">
+      <EntityTypeMapping TypeName="databasequanaoModel.tbl_Account">
+        <MappingFragment StoreEntitySet="tbl_Account">
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Power" ColumnName="Power" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Customer">
+      <EntityTypeMapping TypeName="databasequanaoModel.tbl_Customer">
+        <MappingFragment StoreEntitySet="tbl_Customer">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Usermame" ColumnName="Usermame" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="IsLock" ColumnName="IsLock" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Import">
+      <EntityTypeMapping TypeName="databasequanaoModel.tbl_Import">
+        <MappingFragment StoreEntitySet="tbl_Import">
+          <ScalarProperty Name="Import_ID" ColumnName="Import_ID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Money" ColumnName="Money" />
+          <ScalarProperty Name="Supplier_ID" ColumnName="Supplier_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ImportDetail">
+      <EntityTypeMapping TypeName="databasequanaoModel.tbl_ImportDetail">
+        <MappingFragment StoreEntitySet="tbl_ImportDetail">
+          <ScalarProperty Name="Import_ID" ColumnName="Import_ID" />
+          <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+          <ScalarProperty Name="Price_Import" ColumnName="Price_Import" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Money" ColumnName="Money" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Order">
+      <EntityTypeMapping TypeName="databasequanaoModel.tbl_Order">
+        <MappingFragment StoreEntitySet="tbl_Order">
+          <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Pay_ID" ColumnName="Pay_ID" />
+          <ScalarProperty Name="Transport_ID" ColumnName="Transport_ID" />
+          <ScalarProperty Name="Name_Received" ColumnName="Name_Received" />
+          <ScalarProperty Name="Address_Received" ColumnName="Address_Received" />
+          <ScalarProperty Name="Phone_Received" ColumnName="Phone_Received" />
+          <ScalarProperty Name="Name_Pay" ColumnName="Name_Pay" />
+          <ScalarProperty Name="Address_Pay" ColumnName="Address_Pay" />
+          <ScalarProperty Name="Phone_Pay" ColumnName="Phone_Pay" />
+          <ScalarProperty Name="Mesage" ColumnName="Mesage" />
+          <ScalarProperty Name="VAT_Gift" ColumnName="VAT_Gift" />
+          <ScalarProperty Name="SumWeight" ColumnName="SumWeight" />
+          <ScalarProperty Name="VAT_Transport" ColumnName="VAT_Transport" />
+          <ScalarProperty Name="SumMoney" ColumnName="SumMoney" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_OrderDetial">
+      <EntityTypeMapping TypeName="databasequanaoModel.tbl_OrderDetial">
+        <MappingFragment StoreEntitySet="tbl_OrderDetial">
+          <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+          <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+          <ScalarProperty Name="Price_Export" ColumnName="Price_Export" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Money" ColumnName="Money" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Payment">
+      <EntityTypeMapping TypeName="databasequanaoModel.tbl_Payment">
+        <MappingFragment StoreEntitySet="tbl_Payment">
+          <ScalarProperty Name="PhiTT" ColumnName="PhiTT" />
+          <ScalarProperty Name="Pay_ID" ColumnName="Pay_ID" />
+          <ScalarProperty Name="Pay_Name" ColumnName="Pay_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Producer">
+      <EntityTypeMapping TypeName="databasequanaoModel.tbl_Producer">
+        <MappingFragment StoreEntitySet="tbl_Producer">
+          <ScalarProperty Name="Producer_ID" ColumnName="Producer_ID" />
+          <ScalarProperty Name="Producer_Name" ColumnName="Producer_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Product">
+      <EntityTypeMapping TypeName="databasequanaoModel.tbl_Product">
+        <MappingFragment StoreEntitySet="tbl_Product">
+          <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+          <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
+          <ScalarProperty Name="Type_ID" ColumnName="Type_ID" />
+          <ScalarProperty Name="Style_ID" ColumnName="Style_ID" />
+          <ScalarProperty Name="Producer_ID" ColumnName="Producer_ID" />
+          <ScalarProperty Name="Supplier_ID" ColumnName="Supplier_ID" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Material" ColumnName="Material" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Price_Import" ColumnName="Price_Import" />
+          <ScalarProperty Name="Price_Export" ColumnName="Price_Export" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="SizeID" ColumnName="SizeID" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="Quantium" ColumnName="Quantium" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Style">
+      <EntityTypeMapping TypeName="databasequanaoModel.tbl_Style">
+        <MappingFragment StoreEntitySet="tbl_Style">
+          <ScalarProperty Name="Style_ID" ColumnName="Style_ID" />
+          <ScalarProperty Name="Style_Name" ColumnName="Style_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Supplier">
+      <EntityTypeMapping TypeName="databasequanaoModel.tbl_Supplier">
+        <MappingFragment StoreEntitySet="tbl_Supplier">
+          <ScalarProperty Name="Supplier_ID" ColumnName="Supplier_ID" />
+          <ScalarProperty Name="Supplier_Name" ColumnName="Supplier_Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Transport">
+      <EntityTypeMapping TypeName="databasequanaoModel.tbl_Transport">
+        <MappingFragment StoreEntitySet="tbl_Transport">
+          <ScalarProperty Name="PhiVC" ColumnName="PhiVC" />
+          <ScalarProperty Name="Transport_ID" ColumnName="Transport_ID" />
+          <ScalarProperty Name="Transport_Name" ColumnName="Transport_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Type">
+      <EntityTypeMapping TypeName="databasequanaoModel.tbl_Type">
+        <MappingFragment StoreEntitySet="tbl_Type">
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Type_ID" ColumnName="Type_ID" />
+          <ScalarProperty Name="Type_Name" ColumnName="Type_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="databasequanaoModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="databasequanaoModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="databasequanaoModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="databasequanaoModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="databasequanaoModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="databasequanaoModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="databasequanaoModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="databasequanaoModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="databasequanaoModel.Store.sp_upgraddiagrams" />
+    <EntitySetMapping Name="Counters">
+      <EntityTypeMapping TypeName="databasequanaoModel.Counter">
+        <MappingFragment StoreEntitySet="Counter">
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
