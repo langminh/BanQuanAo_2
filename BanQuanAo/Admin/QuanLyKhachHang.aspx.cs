@@ -99,27 +99,38 @@ namespace BanQuanAo.Admin
             try
             {
 
-
-                if (txtTaiKhoan.Text.Length > 0)
+                if (txtMaUser.Value != null)
                 {
-                    tbl_Customer customer = db.tbl_Customer.Find(txtTaiKhoan.Text);
-
-                    customer.Password = txtMatkhau.Text.GetMD5();
-                    customer.Phone = Int32.Parse(txtSodienthoai.Text);
-                    customer.FullName = txtHoten.Text;
-                    customer.Email = txtEmail.Text;
-                    customer.Address = txtDiachi.Text;
-                    customer.RoleID = int.Parse(drQuyen.SelectedValue.ToString());
-                    db.SaveChanges();
-                    load();
-                    lbThongBao.Text = "Sửa thành công";
-                    lbThongBao.ForeColor = System.Drawing.Color.Green;
-                    reset();
-                }
-                else
-                {
-                    lbThongBao.Text = "Bạn chưa nhập vào tài khoản";
-                    lbThongBao.ForeColor = System.Drawing.Color.Red;
+                    if (txtTaiKhoan.Text.Length > 0)
+                    {
+                        tbl_Customer customer = db.tbl_Customer.Where(x => x.Usermame.Equals(txtMaUser.Value.ToString())).FirstOrDefault();
+                        if (customer != null)
+                        {
+                            if (!string.IsNullOrEmpty(txtMatkhau.Text))
+                            {
+                                customer.Password = txtMatkhau.Text.GetMD5();
+                            }
+                            if (!string.IsNullOrEmpty(txtSodienthoai.Text))
+                            {
+                                customer.Phone = Int32.Parse(txtSodienthoai.Text);
+                            }
+                            customer.Usermame = txtTaiKhoan.Text;
+                            customer.FullName = txtHoten.Text;
+                            customer.Email = txtEmail.Text;
+                            customer.Address = txtDiachi.Text;
+                            customer.RoleID = int.Parse(drQuyen.SelectedValue.ToString());
+                            db.SaveChanges();
+                            load();
+                            lbThongBao.Text = "Sửa thành công";
+                            lbThongBao.ForeColor = System.Drawing.Color.Green;
+                            reset();
+                        }
+                    }
+                    else
+                    {
+                        lbThongBao.Text = "Bạn chưa nhập vào tài khoản";
+                        lbThongBao.ForeColor = System.Drawing.Color.Red;
+                    }
                 }
             }
             catch (Exception ex)
@@ -133,20 +144,23 @@ namespace BanQuanAo.Admin
         {
             try
             {
-                if (txtTaiKhoan.Text.Length > 0)
+                if (txtMaUser.Value != null)
                 {
-                    tbl_Customer customer = db.tbl_Customer.Find(txtTaiKhoan.Text);
-                    db.tbl_Customer.Remove(customer);
-                    db.SaveChanges();
-                    load();
-                    lbThongBao.Text = "Xóa thành công";
-                    lbThongBao.ForeColor = System.Drawing.Color.Green;
-                    reset();
-                }
-                else
-                {
-                    lbThongBao.Text = "Bạn chưa nhập vào tài khoản";
-                    lbThongBao.ForeColor = System.Drawing.Color.Red;
+                    if (txtTaiKhoan.Text.Length > 0)
+                    {
+                        tbl_Customer customer = db.tbl_Customer.Where(x => x.Usermame.Equals(txtMaUser.Value.ToString())).FirstOrDefault();
+                        db.tbl_Customer.Remove(customer);
+                        db.SaveChanges();
+                        load();
+                        lbThongBao.Text = "Xóa thành công";
+                        lbThongBao.ForeColor = System.Drawing.Color.Green;
+                        reset();
+                    }
+                    else
+                    {
+                        lbThongBao.Text = "Bạn chưa nhập vào tài khoản";
+                        lbThongBao.ForeColor = System.Drawing.Color.Red;
+                    }
                 }
             }
             catch (Exception ex)
@@ -168,12 +182,15 @@ namespace BanQuanAo.Admin
             {
                 GridViewRow row = GridView1.SelectedRow;
 
-                txtTaiKhoan.Text = row.Cells[0].Text;
+                txtMaUser.Value = txtTaiKhoan.Text = row.Cells[0].Text;
                 txtMatkhau.Text = row.Cells[1].Text;
                 txtHoten.Text = row.Cells[2].Text;
                 txtEmail.Text = row.Cells[3].Text;
                 txtDiachi.Text = row.Cells[4].Text;
-                txtSodienthoai.Text = row.Cells[5].Text;
+                if (!row.Cells[5].Text.Equals("&nbsp;"))
+                {
+                    txtSodienthoai.Text = row.Cells[5].Text;
+                }
                 drQuyen.SelectedValue = drQuyen.Items.FindByText(row.Cells[6].Text).Value;
             }
             catch { }

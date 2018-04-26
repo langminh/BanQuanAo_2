@@ -47,6 +47,7 @@
 
     <div>
         <div class="div1">
+            <asp:HiddenField runat="server" ID="txtMaUser" />
             Tài khoản
         <asp:TextBox ID="txtTaiKhoan" runat="server" CssClass="form-control txtbox"></asp:TextBox>
             Mật khẩu<asp:TextBox ID="txtMatkhau" runat="server" TextMode="Password" CssClass="form-control txtbox"></asp:TextBox>
@@ -76,13 +77,13 @@
     <asp:GridView ID="GridView1" runat="server" CssClass="table" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
-            <asp:BoundField HeaderText="Tài khoản" DataField="Usermame" />
-            <asp:BoundField HeaderText="Mật khẩu" DataField="Password" Visible="false"/>
-            <asp:BoundField HeaderText="Họ tên" DataField="FullName" />
-            <asp:BoundField HeaderText="Email" DataField="Email" />
-            <asp:BoundField HeaderText="Địa chỉ" DataField="Address" />
-            <asp:BoundField HeaderText="Số điện thoại" DataField="Phone" />
-            <asp:BoundField HeaderText="Quyen" DataField="RoleID" Visible="false"/>
+            <asp:BoundField HeaderText="Tài khoản" DataField="Usermame" HtmlEncode="false"/>
+            <asp:BoundField HeaderText="Mật khẩu" DataField="Password" Visible="false" HtmlEncode="false"/>
+            <asp:BoundField HeaderText="Họ tên" DataField="FullName" HtmlEncode="false"/>
+            <asp:BoundField HeaderText="Email" DataField="Email" HtmlEncode="false"/>
+            <asp:BoundField HeaderText="Địa chỉ" DataField="Address" HtmlEncode="false" />
+            <asp:BoundField HeaderText="Số điện thoại" DataField="Phone" HtmlEncode="false" />
+            <asp:BoundField HeaderText="Quyen" DataField="RoleID" Visible="false" HtmlEncode="false"/>
             <asp:CommandField SelectText="Chọn" ShowSelectButton="True" />
         </Columns>
         <EditRowStyle BackColor="#7C6F57" />
